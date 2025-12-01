@@ -55,17 +55,19 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ service, isOpen, onClose 
     setError('');
 
     try {
+      const orderId = self.crypto?.randomUUID ? self.crypto.randomUUID() : Math.random().toString(36).slice(2);
       // Always charge in base KZT extracted from catalog price string
       const amount = parseInt(service.price.replace(/\D/g, ''));
 
       // Create payment request (test backend)
       const paymentPayload = {
         amount,
+        order_id: orderId,
         description: service.title,
       };
 
       const paymentResponse = await fetch(
-        'https://neuroboost-pay-backend-production.up.railway.app/create-payment',
+        'https://neuroboost-pay-backend-production.up.railway.app/api/payment/create',
         {
           method: 'POST',
           headers: {
@@ -89,7 +91,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ service, isOpen, onClose 
           product_name: service.title,
           amount: amount,
           status: 'pending',
-          payment_url: paymentData.payment_url,
+          payment_url: paymentData.pa_url,
           company_name: formData.company_name,
           bin: formData.bin,
           contact_person: formData.contact_person,
@@ -104,7 +106,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ service, isOpen, onClose 
       }
 
       // Redirect to payment
-      window.location.href = paymentData.payment_url;
+      window.location.href = paymentData.pay_url;
 
     } catch (error) {
       console.error('Payment error:', error);
