@@ -58,26 +58,22 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ service, isOpen, onClose 
       // Always charge in base KZT extracted from catalog price string
       const amount = parseInt(service.price.replace(/\D/g, ''));
 
-      // Create payment request
-      const paymentResponse = await fetch('https://paymentbackend-production-3f01.up.railway.app/create-payment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          product_id: service.id,
-          product_name: service.title,
-          amount: amount,
-          user_id: user.id,
-          company_name: formData.company_name,
-          bin: formData.bin,
-          contact_person: formData.contact_person,
-          email: formData.email,
-          phone: formData.phone,
-          website: formData.website,
-          comment: formData.comment
-        })
-      });
+      // Create payment request (test backend)
+      const paymentPayload = {
+        amount,
+        description: service.title,
+      };
+
+      const paymentResponse = await fetch(
+        'https://nbtestplatejka-production.up.railway.app/create-payment',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(paymentPayload),
+        }
+      );
 
       if (!paymentResponse.ok) {
         throw new Error('Failed to create payment');
