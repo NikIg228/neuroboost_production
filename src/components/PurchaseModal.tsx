@@ -65,7 +65,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ service, isOpen, onClose 
       };
 
       const paymentResponse = await fetch(
-        'https://nbtestplatejka-production.up.railway.app/create-payment',
+        'https://neuroboost-pay-backend-production.up.railway.app/create-payment',
         {
           method: 'POST',
           headers: {
