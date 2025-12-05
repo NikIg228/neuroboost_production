@@ -13,4 +13,15 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
+  server: {
+    https: false,
+    port: 5173,
+  },
 });

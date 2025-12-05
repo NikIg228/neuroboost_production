@@ -22,6 +22,22 @@
       "consult": "Get consultation"
     }
   },
+  "test-product": {
+    "title": "AI Business Audit",
+    "description": "Comprehensive analysis of your company's business processes to identify automation opportunities using artificial intelligence. Get a detailed roadmap for implementing AI solutions.",
+    "benefits": [
+      "Identifying bottlenecks in business processes",
+      "Recommendations for AI solution implementation",
+      "Assessment of potential savings",
+      "Digital transformation roadmap"
+    ],
+    "features": [
+      "Analysis of up to 20 business processes",
+      "Report with data visualization",
+      "Expert consultation",
+      "30-day quality guarantee"
+    ]
+  },
   "ai-audit": {
     "title": "AI Business Audit",
     "description": "Comprehensive analysis of your company's business processes to identify automation opportunities using artificial intelligence. Get a detailed roadmap for implementing AI solutions.",

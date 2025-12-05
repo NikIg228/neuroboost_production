@@ -21,6 +21,7 @@ const Catalog: React.FC = () => {
   const { user } = useAuth();
   const { convertPrice } = useCurrency();
   const { t } = useTranslation('catalog');
+  const { t: tServices } = useTranslation('services');
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [purchaseService, setPurchaseService] = useState<Service | null>(null);
@@ -116,13 +117,18 @@ const Catalog: React.FC = () => {
   };
 
   const filteredServices = services
-    .filter(service => 
-      service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      service.description.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+    .filter(service => {
+      if (!searchQuery) return true; // Если поиск пустой, показываем все
+      const title = tServices(service.title).toLowerCase();
+      const description = tServices(service.description).toLowerCase();
+      const query = searchQuery.toLowerCase();
+      return title.includes(query) || description.includes(query);
+    })
     .sort((a, b) => {
       if (sortBy === 'name') {
-        return a.title.localeCompare(b.title);
+        const titleA = tServices(a.title);
+        const titleB = tServices(b.title);
+        return titleA.localeCompare(titleB);
       } else {
         const priceAKzt = parseInt(a.price.replace(/\D/g, '')) || 0;
         const priceBKzt = parseInt(b.price.replace(/\D/g, '')) || 0;

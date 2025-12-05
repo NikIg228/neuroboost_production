@@ -44,7 +44,7 @@ i18n
     react: {
       useSuspense: false
     },
-    debug: true
+    debug: false
   });
 
 export default i18n;

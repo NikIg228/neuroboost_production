@@ -2,6 +2,24 @@ import { Service } from '@/types/index';
 
 export const services: Service[] = [
   {
+    id: 'test-product',
+    title: 'services:test-product.title',
+    description: 'services:test-product.description',
+    price: '100 тг',
+    benefits: [
+      'services:test-product.benefits.0',
+      'services:test-product.benefits.1',
+      'services:test-product.benefits.2',
+      'services:test-product.benefits.3'
+    ],
+    features: [
+      'services:test-product.features.0',
+      'services:test-product.features.1',
+      'services:test-product.features.2',
+      'services:test-product.features.3'
+    ]
+  },
+  {
     id: 'ai-audit',
     title: 'services:ai-audit.title',
     description: 'services:ai-audit.description',
